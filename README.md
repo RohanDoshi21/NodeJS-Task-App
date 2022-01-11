@@ -16,6 +16,8 @@
 # APIS Created:
 Base API : https://rohandoshi21-task-app.herokuapp.com <br>
 Users: <br>
+* Create User: `POST /users`
+* Login User: `POST /users/login`
 * List All Users: `GET /users`
 * Show Info: `GET /users/me`
 * Update Info: `PATCH /users/me`
