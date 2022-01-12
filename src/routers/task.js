@@ -37,7 +37,7 @@ router.get('/tasks', auth, async (req, res) => {
     try {
         // const tasks = await Task.find({})
         // res.send(tasks)
-        console.log(req.user)
+        // console.log(req.user)
 
 
         // await req.user.populate('tasks').execPopulate()
@@ -55,12 +55,12 @@ router.get('/tasks', auth, async (req, res) => {
             // match: {
             //     completed: false
             // }
-        })
+        }).execPopulate()
         console.log(req.user['tasks'])
 
         res.send(req.user.tasks)
     } catch (e) {
-        res.status(500).send()
+        res.status(500).send(e)
     }
 })
 
