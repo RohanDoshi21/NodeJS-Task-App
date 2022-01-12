@@ -55,8 +55,8 @@ router.get('/tasks', auth, async (req, res) => {
             // match: {
             //     completed: false
             // }
-        }).execPopulate()
-        console.log(req.user['tasks'])
+        })
+        // console.log(req.user['tasks'])
 
         res.send(req.user.tasks)
     } catch (e) {
