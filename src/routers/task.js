@@ -37,7 +37,7 @@ router.get('/tasks', auth, async (req, res) => {
     try {
         // const tasks = await Task.find({})
         // res.send(tasks)
-        // console.log(req.user)
+        console.log(req.user)
 
 
         // await req.user.populate('tasks').execPopulate()
