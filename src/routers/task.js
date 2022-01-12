@@ -56,7 +56,7 @@ router.get('/tasks', auth, async (req, res) => {
             //     completed: false
             // }
         })
-        //console.log(req.user)
+        console.log(req.user['tasks'])
 
         res.send(req.user.tasks)
     } catch (e) {
