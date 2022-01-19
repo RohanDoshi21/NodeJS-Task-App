@@ -28,10 +28,10 @@ router.get('/tasks', auth, async (req, res) => {
         match.completed = req.query.completed === 'true'
     }
 
-    if (req.query.sortBy){
+    if (req.query.sortBy) {
         const parts = req.query.sortBy.split(':')
         sort[parts[0]] = parts[1] === 'desc' ? -1 : 1
-        
+
     }
 
     try {
@@ -44,19 +44,37 @@ router.get('/tasks', auth, async (req, res) => {
 
         //for new version of mongoose .execPopulate is not required
 
-        // await req.user.populate({
-        //     path: 'tasks',
-        //     match,
-        //     options: {
-        //         limit: parseInt(req.query.limit),
-        //         skip: parseInt(req.query.skip),
-        //         sort
-        //     }
-        //     // match: {
-        //     //     completed: false
-        //     // }
-        // })
-        await req.user.populate('tasks')
+        let limit1;
+        if (isNaN(parseInt(req.query.lim))) {
+            limit1 = 0
+        } else {
+            limit1 = parseInt(req.query.lim)
+        }
+
+        let skip1;
+        if (isNaN(parseInt(req.query.skip1))) {
+            skip1 = 0
+        } else {
+            skip1 = parseInt(req.query.skip1)
+        }
+
+        // console.log(skip1)
+        // console.log(limit1)
+
+        await req.user.populate({
+            path: 'tasks',
+            match,
+            options: {
+                // limit: parseInt(req.query.limit),
+                skip: skip1,
+                sort
+            },
+            perDocumentLimit: limit1
+            // match: {
+            //     completed: false
+            // }
+        })
+        // await req.user.populate('tasks')
         res.send(req.user['tasks'])
         // console.log(req.user['tasks'])
 
